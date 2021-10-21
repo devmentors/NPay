@@ -1,0 +1,44 @@
+@url = http://localhost:5000
+@email  = user1@npay.io
+@ownerId = 00000000-0000-0000-0000-000000000000
+@fromWalletId = 00000000-0000-0000-0000-000000000000
+@toWalletId = 00000000-0000-0000-0000-000000000000
+
+###
+POST {{url}}/owners
+Content-Type: application/json
+
+{
+  "email": "{{email}}"
+}
+
+###
+GET {{url}}/wallets/{{fromWalletId}}
+
+###
+POST {{url}}/wallets
+Content-Type: application/json
+
+{
+  "ownerId": "{{ownerId}}",
+  "currency": "EUR"
+}
+
+###
+POST {{url}}/funds
+Content-Type: application/json
+
+{
+  "walletId": "{{fromWalletId}}",
+  "amount": 1000
+}
+
+###
+POST {{url}}/funds/transfer
+Content-Type: application/json
+
+{
+  "fromWalletId": "{{fromWalletId}}",
+  "toWalletId": "{{toWalletId}}",
+  "amount": 100
+}

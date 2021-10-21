@@ -1,0 +1,31 @@
+@url = http://localhost:5000/users
+@email  = user1@npay.io
+@userId = 00000000-0000-0000-0000-000000000000
+
+###
+GET {{url}}
+
+###
+GET {{url}}/{{userId}}
+
+###
+GET {{url}}/by-email/{{email}}
+
+###
+POST {{url}}
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "fullName": "John Doe",
+  "address": "Test street 123",
+  "nationality": "PL",
+  "identity": "ID1234567890"
+}
+
+###
+PUT {{url}}/{{userId}}/verify
+Content-Type: application/json
+
+{
+}
