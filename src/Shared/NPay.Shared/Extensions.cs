@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Convey;
+using Convey.MessageBrokers.RabbitMQ;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,6 +43,10 @@ namespace NPay.Shared
                     Version = ApiVersion
                 });
             });
+            
+            services
+                .AddConvey()
+                .AddRabbitMq();
             
             return services;
         }

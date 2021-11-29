@@ -4,7 +4,7 @@ using NPay.Shared.Events;
 
 namespace NPay.Shared.Messaging
 {
-    internal interface IAsyncEventDispatcher
+    public interface IAsyncEventDispatcher
     {
         Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
             where TEvent : class, IEvent;

@@ -1,3 +1,4 @@
+using Convey.MessageBrokers.RabbitMQ;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -5,8 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NPay.Modules.Notifications.Api;
 using NPay.Modules.Users.Api;
+using NPay.Modules.Users.Shared.Events;
 using NPay.Modules.Wallets.Api;
+using NPay.Modules.Wallets.Shared.Events;
 using NPay.Shared;
+using NPay.Shared.Messaging;
 
 namespace NPay.Bootstrapper
 {
@@ -38,6 +42,14 @@ namespace NPay.Bootstrapper
                 endpoints.MapControllers();
                 endpoints.MapGet("/", ctx => ctx.Response.WriteAsync("NPay API"));
             });
+
+            app.UseRabbitMq()
+                .Subscribe<UserCreated>((s, e, _) => s.GetRequiredService<IAsyncEventDispatcher>().PublishAsync(e))
+                .Subscribe<UserVerified>((s, e, _) => s.GetRequiredService<IAsyncEventDispatcher>().PublishAsync(e))
+                .Subscribe<FundsAdded>((s, e, _) => s.GetRequiredService<IAsyncEventDispatcher>().PublishAsync(e))
+                .Subscribe<FundsTransferred>((s, e, _) => s.GetRequiredService<IAsyncEventDispatcher>().PublishAsync(e))
+                .Subscribe<OwnerVerified>((s, e, _) => s.GetRequiredService<IAsyncEventDispatcher>().PublishAsync(e))
+                .Subscribe<WalletAdded>((s, e, _) => s.GetRequiredService<IAsyncEventDispatcher>().PublishAsync(e));
         }
     }
 }
