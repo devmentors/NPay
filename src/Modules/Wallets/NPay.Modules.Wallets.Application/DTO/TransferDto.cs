@@ -1,6 +1,6 @@
 using System;
 
-namespace NPay.Modules.Wallets.Shared.DTO
+namespace NPay.Modules.Wallets.Application.DTO
 {
     public class TransferDto
     {

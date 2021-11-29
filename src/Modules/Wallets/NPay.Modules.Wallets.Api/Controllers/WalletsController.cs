@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NPay.Modules.Wallets.Application.DTO;
 using NPay.Modules.Wallets.Application.Wallets.Commands;
 using NPay.Modules.Wallets.Application.Wallets.Queries;
-using NPay.Modules.Wallets.Shared.DTO;
 using NPay.Shared.Dispatchers;
 using Swashbuckle.AspNetCore.Annotations;
 

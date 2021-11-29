@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using NPay.Modules.Wallets.Application.Wallets.Storage;
-using NPay.Modules.Wallets.Shared.DTO;
 using NPay.Shared.Queries;
+using WalletDto = NPay.Modules.Wallets.Application.DTO.WalletDto;
 
 namespace NPay.Modules.Wallets.Application.Wallets.Queries.Handlers
 {

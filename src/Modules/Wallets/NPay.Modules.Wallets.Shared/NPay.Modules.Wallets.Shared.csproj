@@ -8,4 +8,8 @@
     <ProjectReference Include="..\..\..\Shared\NPay.Shared\NPay.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Events" />
+  </ItemGroup>
+
 </Project>

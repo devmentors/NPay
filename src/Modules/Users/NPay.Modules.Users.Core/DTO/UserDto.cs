@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace NPay.Modules.Users.Shared.DTO
+namespace NPay.Modules.Users.Core.DTO
 {
     public class UserDto
     {

@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Users\NPay.Modules.Users.Shared\NPay.Modules.Users.Shared.csproj" />
     <ProjectReference Include="..\NPay.Modules.Wallets.Core\NPay.Modules.Wallets.Core.csproj" />
-    <ProjectReference Include="..\NPay.Modules.Wallets.Shared\NPay.Modules.Wallets.Shared.csproj" />
   </ItemGroup>
 
 </Project>

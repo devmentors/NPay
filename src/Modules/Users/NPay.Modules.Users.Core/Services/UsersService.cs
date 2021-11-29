@@ -6,11 +6,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NPay.Modules.Users.Core.DAL;
 using NPay.Modules.Users.Core.Entities;
+using NPay.Modules.Users.Core.Events;
 using NPay.Modules.Users.Core.Exceptions;
-using NPay.Modules.Users.Shared.DTO;
-using NPay.Modules.Users.Shared.Events;
 using NPay.Shared.Messaging;
 using NPay.Shared.Time;
+using UserDetailsDto = NPay.Modules.Users.Core.DTO.UserDetailsDto;
+using UserDto = NPay.Modules.Users.Core.DTO.UserDto;
 
 namespace NPay.Modules.Users.Core.Services
 {

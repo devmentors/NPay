@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace NPay.Modules.Users.Shared.DTO
+namespace NPay.Modules.Wallets.Application.Clients.DTO
 {
     public class UserDetailsDto : UserDto
     {

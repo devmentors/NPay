@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using NPay.Modules.Wallets.Core.Wallets.Aggregates;
 using NPay.Modules.Wallets.Core.Wallets.Entities;
-using NPay.Modules.Wallets.Shared.DTO;
+using TransferDto = NPay.Modules.Wallets.Application.DTO.TransferDto;
+using WalletDto = NPay.Modules.Wallets.Application.DTO.WalletDto;
 
 namespace NPay.Modules.Wallets.Application.Wallets.Queries.Handlers
 {

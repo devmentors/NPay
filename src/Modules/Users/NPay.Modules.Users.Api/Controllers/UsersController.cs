@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NPay.Modules.Users.Core.DTO;
 using NPay.Modules.Users.Core.Services;
-using NPay.Modules.Users.Shared.DTO;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace NPay.Modules.Users.Api.Controllers

@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using NPay.Modules.Users.Shared;
+using NPay.Modules.Wallets.Application.Clients;
 using NPay.Modules.Wallets.Application.Owners.Exceptions;
 using NPay.Modules.Wallets.Core.Owners.Aggregates;
 using NPay.Modules.Wallets.Core.Owners.Repositories;
@@ -13,22 +13,22 @@ namespace NPay.Modules.Wallets.Application.Owners.Commands.Handlers
     internal sealed class AddOwnerHandler : ICommandHandler<AddOwner>
     {
         private readonly IOwnerRepository _ownerRepository;
-        private readonly IUsersModuleApi _usersModuleApi;
+        private readonly IUsersApiModuleClient _usersApiModuleClient;
         private readonly IClock _clock;
         private readonly ILogger<AddOwnerHandler> _logger;
 
-        public AddOwnerHandler(IOwnerRepository ownerRepository, IUsersModuleApi usersModuleApi, IClock clock,
-            ILogger<AddOwnerHandler> logger)
+        public AddOwnerHandler(IOwnerRepository ownerRepository, IUsersApiModuleClient usersApiModuleClient,
+            IClock clock, ILogger<AddOwnerHandler> logger)
         {
             _ownerRepository = ownerRepository;
-            _usersModuleApi = usersModuleApi;
+            _usersApiModuleClient = usersApiModuleClient;
             _clock = clock;
             _logger = logger;
         }
         
         public async Task HandleAsync(AddOwner command, CancellationToken cancellationToken = default)
         {
-            var user = await _usersModuleApi.GetUserAsync(command.Email);
+            var user = await _usersApiModuleClient.GetUserAsync(command.Email);
             if (user is null)
             {
                 throw new UserNotFoundException(command.Email);

@@ -1,11 +1,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using NPay.Modules.Users.Shared.Events;
+using NPay.Modules.Wallets.Application.Events;
+using NPay.Modules.Wallets.Application.ExternalEvents;
 using NPay.Modules.Wallets.Core.Wallets.Aggregates;
 using NPay.Modules.Wallets.Core.Wallets.Repositories;
 using NPay.Modules.Wallets.Core.Wallets.Services;
-using NPay.Modules.Wallets.Shared.Events;
 using NPay.Shared.Events;
 using NPay.Shared.Messaging;
 using NPay.Shared.Time;

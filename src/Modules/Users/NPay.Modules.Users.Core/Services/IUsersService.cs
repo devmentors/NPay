@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NPay.Modules.Users.Shared.DTO;
+using NPay.Modules.Users.Core.DTO;
 
 namespace NPay.Modules.Users.Core.Services
 {
