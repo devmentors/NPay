@@ -8,12 +8,12 @@ namespace NPay.Shared.Messaging
 {
     internal sealed class InMemoryMessageBroker : IMessageBroker
     {
-        private readonly IAsyncEventDispatcher _asyncEventDispatcher;
+        private readonly IEventDispatcher _eventDispatcher;
         private readonly ILogger<InMemoryMessageBroker> _logger;
 
-        public InMemoryMessageBroker(IAsyncEventDispatcher asyncEventDispatcher, ILogger<InMemoryMessageBroker> logger)
+        public InMemoryMessageBroker(IEventDispatcher eventDispatcher, ILogger<InMemoryMessageBroker> logger)
         {
-            _asyncEventDispatcher = asyncEventDispatcher;
+            _eventDispatcher = eventDispatcher;
             _logger = logger;
         }
 
@@ -21,7 +21,7 @@ namespace NPay.Shared.Messaging
         {
             var name = @event.GetType().Name.Underscore();
             _logger.LogInformation("Publishing an event: {Name}...", name);
-            await _asyncEventDispatcher.PublishAsync(@event, cancellationToken);
+            await _eventDispatcher.PublishAsync(@event, cancellationToken);
         }
     }
 }
