@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace NPay.Shared.Time
+namespace NPay.Shared.Time;
+
+public interface IClock
 {
-    public interface IClock
-    {
-        DateTime CurrentDate();
-    }
+    DateTime CurrentDate();
 }

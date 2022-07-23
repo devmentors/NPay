@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace NPay.Shared.Time
+namespace NPay.Shared.Time;
+
+internal sealed class UtcClock : IClock
 {
-    internal sealed class UtcClock : IClock
-    {
-        public DateTime CurrentDate() => DateTime.UtcNow;
-    }
+    public DateTime CurrentDate() => DateTime.UtcNow;
 }

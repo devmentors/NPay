@@ -8,36 +8,35 @@ using NPay.Modules.Users.Api;
 using NPay.Modules.Wallets.Api;
 using NPay.Shared;
 
-namespace NPay.Bootstrapper
+namespace NPay.Bootstrapper;
+
+public class Startup
 {
-    public class Startup
+    private readonly IConfiguration _configuration;
+
+    public Startup(IConfiguration configuration)
     {
-        private readonly IConfiguration _configuration;
-
-        public Startup(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        _configuration = configuration;
+    }
         
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddNotificationsModule();
-            services.AddUsersModule();
-            services.AddWalletsModule();
-            services.AddSharedFramework(_configuration);
-        }
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddNotificationsModule();
+        services.AddUsersModule();
+        services.AddWalletsModule();
+        services.AddSharedFramework(_configuration);
+    }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        app.UseSharedFramework();
+        app.UseNotificationsModule();
+        app.UseUsersModule();
+        app.UseWalletsModule();
+        app.UseEndpoints(endpoints =>
         {
-            app.UseSharedFramework();
-            app.UseNotificationsModule();
-            app.UseUsersModule();
-            app.UseWalletsModule();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-                endpoints.MapGet("/", ctx => ctx.Response.WriteAsync("NPay API"));
-            });
-        }
+            endpoints.MapControllers();
+            endpoints.MapGet("/", ctx => ctx.Response.WriteAsync("NPay API"));
+        });
     }
 }

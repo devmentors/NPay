@@ -2,11 +2,10 @@
 using System.Threading.Tasks;
 using NPay.Shared.Events;
 
-namespace NPay.Shared.Messaging
+namespace NPay.Shared.Messaging;
+
+internal interface IAsyncEventDispatcher
 {
-    internal interface IAsyncEventDispatcher
-    {
-        Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
-            where TEvent : class, IEvent;
-    }
+    Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
+        where TEvent : class, IEvent;
 }

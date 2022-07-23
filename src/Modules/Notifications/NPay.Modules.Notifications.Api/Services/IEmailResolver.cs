@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace NPay.Modules.Notifications.Api.Services
+namespace NPay.Modules.Notifications.Api.Services;
+
+internal interface IEmailResolver
 {
-    internal interface IEmailResolver
-    {
-        string GetForOwner(Guid ownerId);
-    }
+    string GetForOwner(Guid ownerId);
 }

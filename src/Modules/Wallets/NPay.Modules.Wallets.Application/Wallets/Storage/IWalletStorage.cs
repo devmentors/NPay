@@ -3,10 +3,9 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using NPay.Modules.Wallets.Core.Wallets.Aggregates;
 
-namespace NPay.Modules.Wallets.Application.Wallets.Storage
+namespace NPay.Modules.Wallets.Application.Wallets.Storage;
+
+internal interface IWalletStorage
 {
-    internal interface IWalletStorage
-    {
-        Task<Wallet> FindAsync(Expression<Func<Wallet, bool>> expression);
-    }
+    Task<Wallet> FindAsync(Expression<Func<Wallet, bool>> expression);
 }

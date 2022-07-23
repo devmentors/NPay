@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using NPay.Shared.Events;
 
-namespace NPay.Shared.Messaging
+namespace NPay.Shared.Messaging;
+
+public interface IMessageBroker
 {
-    public interface IMessageBroker
-    {
-        Task PublishAsync(IEvent @event, CancellationToken cancellationToken = default);
-    }
+    Task PublishAsync(IEvent @event, CancellationToken cancellationToken = default);
 }

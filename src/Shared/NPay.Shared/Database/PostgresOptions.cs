@@ -1,7 +1,6 @@
-﻿namespace NPay.Shared.Database
+﻿namespace NPay.Shared.Database;
+
+internal sealed class PostgresOptions
 {
-    internal sealed class PostgresOptions
-    {
-        public string ConnectionString { get; set; }
-    }
+    public string ConnectionString { get; set; }
 }

@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace NPay.Modules.Notifications.Api.Services
+namespace NPay.Modules.Notifications.Api.Services;
+
+internal interface IEmailSender
 {
-    internal interface IEmailSender
-    {
-        Task SendAsync(string receiver, string template);
-    }
+    Task SendAsync(string receiver, string template);
 }

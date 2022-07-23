@@ -1,7 +1,6 @@
-﻿namespace NPay.Shared.Events
+﻿namespace NPay.Shared.Events;
+
+// Marker
+public interface IEvent
 {
-    // Marker
-    public interface IEvent
-    {
-    }
 }

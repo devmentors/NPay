@@ -7,18 +7,17 @@ using NPay.Modules.Wallets.Infrastructure.DAL.Repositories;
 using NPay.Modules.Wallets.Infrastructure.Storage;
 using NPay.Shared.Database;
 
-namespace NPay.Modules.Wallets.Infrastructure
+namespace NPay.Modules.Wallets.Infrastructure;
+
+public static class Extensions
 {
-    public static class Extensions
+    public static IServiceCollection AddInfrastructureLayer(this IServiceCollection services)
     {
-        public static IServiceCollection AddInfrastructureLayer(this IServiceCollection services)
-        {
-            services.AddPostgres<WalletsDbContext>();
-            services.AddScoped<IOwnerRepository, OwnerRepository>();
-            services.AddScoped<IWalletRepository, WalletRepository>();
-            services.AddScoped<IWalletStorage, WalletStorage>();
+        services.AddPostgres<WalletsDbContext>();
+        services.AddScoped<IOwnerRepository, OwnerRepository>();
+        services.AddScoped<IWalletRepository, WalletRepository>();
+        services.AddScoped<IWalletStorage, WalletStorage>();
             
-            return services;
-        }
+        return services;
     }
 }

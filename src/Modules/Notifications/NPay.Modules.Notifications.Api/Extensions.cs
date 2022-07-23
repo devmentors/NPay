@@ -3,22 +3,21 @@ using Microsoft.Extensions.DependencyInjection;
 using NPay.Modules.Notifications.Api.Services;
 using NPay.Modules.Notifications.Shared;
 
-namespace NPay.Modules.Notifications.Api
+namespace NPay.Modules.Notifications.Api;
+
+public static class Extensions
 {
-    public static class Extensions
+    public static IServiceCollection AddNotificationsModule(this IServiceCollection services)
     {
-        public static IServiceCollection AddNotificationsModule(this IServiceCollection services)
-        {
-            services.AddTransient<INotificationsModuleApi, NotificationsModuleApi>();
-            services.AddSingleton<IEmailSender, EmailSender>();
-            services.AddSingleton<IEmailResolver, EmailResolver>();
+        services.AddTransient<INotificationsModuleApi, NotificationsModuleApi>();
+        services.AddSingleton<IEmailSender, EmailSender>();
+        services.AddSingleton<IEmailResolver, EmailResolver>();
             
-            return services;
-        }
+        return services;
+    }
         
-        public static IApplicationBuilder UseNotificationsModule(this IApplicationBuilder app)
-        {
-            return app;
-        }
+    public static IApplicationBuilder UseNotificationsModule(this IApplicationBuilder app)
+    {
+        return app;
     }
 }

@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using NPay.Modules.Wallets.Shared.DTO;
 
-namespace NPay.Modules.Wallets.Shared
+namespace NPay.Modules.Wallets.Shared;
+
+public interface IWalletsModuleApi
 {
-    public interface IWalletsModuleApi
-    {
-        Task<WalletDto> GetWalletAsync(Guid walletId);
-    }
+    Task<WalletDto> GetWalletAsync(Guid walletId);
 }

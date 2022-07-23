@@ -1,10 +1,9 @@
 ﻿using NPay.Modules.Wallets.Core.Owners.ValueObjects;
 using NPay.Modules.Wallets.Core.Wallets.ValueObjects;
 
-namespace NPay.Modules.Wallets.Core.Wallets.Services
+namespace NPay.Modules.Wallets.Core.Wallets.Services;
+
+internal interface ICurrencyResolver
 {
-    internal interface ICurrencyResolver
-    {
-        Currency Resolve(Nationality nationality);
-    }
+    Currency Resolve(Nationality nationality);
 }

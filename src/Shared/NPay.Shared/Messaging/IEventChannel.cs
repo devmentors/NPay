@@ -1,11 +1,10 @@
 ﻿using System.Threading.Channels;
 using NPay.Shared.Events;
 
-namespace NPay.Shared.Messaging
+namespace NPay.Shared.Messaging;
+
+internal interface IEventChannel
 {
-    internal interface IEventChannel
-    {
-        ChannelReader<IEvent> Reader { get; }
-        ChannelWriter<IEvent> Writer { get; }
-    }
+    ChannelReader<IEvent> Reader { get; }
+    ChannelWriter<IEvent> Writer { get; }
 }

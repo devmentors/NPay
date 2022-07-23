@@ -4,17 +4,16 @@ using NPay.Modules.Users.Core.Services;
 using NPay.Modules.Users.Shared;
 using NPay.Shared.Database;
 
-namespace NPay.Modules.Users.Core
+namespace NPay.Modules.Users.Core;
+
+public static class Extensions
 {
-    public static class Extensions
+    public static IServiceCollection AddCoreLayer(this IServiceCollection services)
     {
-        public static IServiceCollection AddCoreLayer(this IServiceCollection services)
-        {
-            services.AddPostgres<UsersDbContext>();
-            services.AddTransient<IUsersService, UsersService>();
-            services.AddTransient<IUsersModuleApi, UsersModuleApi>();
+        services.AddPostgres<UsersDbContext>();
+        services.AddTransient<IUsersService, UsersService>();
+        services.AddTransient<IUsersModuleApi, UsersModuleApi>();
             
-            return services;
-        }
+        return services;
     }
 }

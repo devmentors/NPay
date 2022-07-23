@@ -5,18 +5,17 @@ using NPay.Modules.Wallets.Shared;
 using NPay.Modules.Wallets.Shared.DTO;
 using NPay.Shared.Dispatchers;
 
-namespace NPay.Modules.Wallets.Application.Services
+namespace NPay.Modules.Wallets.Application.Services;
+
+internal sealed class WalletsModuleApi : IWalletsModuleApi
 {
-    internal sealed class WalletsModuleApi : IWalletsModuleApi
+    private readonly IDispatcher _dispatcher;
+
+    public WalletsModuleApi(IDispatcher dispatcher)
     {
-        private readonly IDispatcher _dispatcher;
-
-        public WalletsModuleApi(IDispatcher dispatcher)
-        {
-            _dispatcher = dispatcher;
-        }
-
-        public Task<WalletDto> GetWalletAsync(Guid walletId)
-            => _dispatcher.QueryAsync(new GetWallet { WalletId = walletId });
+        _dispatcher = dispatcher;
     }
+
+    public Task<WalletDto> GetWalletAsync(Guid walletId)
+        => _dispatcher.QueryAsync(new GetWallet { WalletId = walletId });
 }

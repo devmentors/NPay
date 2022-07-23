@@ -8,47 +8,46 @@ using NPay.Shared.Commands;
 using NPay.Shared.Messaging;
 using NPay.Shared.Time;
 
-namespace NPay.Modules.Wallets.Application.Wallets.Commands.Handlers
+namespace NPay.Modules.Wallets.Application.Wallets.Commands.Handlers;
+
+internal sealed class TransferFundsHandler : ICommandHandler<TransferFunds>
 {
-    internal sealed class TransferFundsHandler : ICommandHandler<TransferFunds>
+    private readonly IWalletRepository _walletRepository;
+    private readonly IClock _clock;
+    private readonly IMessageBroker _messageBroker;
+    private readonly ILogger<TransferFundsHandler> _logger;
+
+    public TransferFundsHandler(IWalletRepository walletRepository, IClock clock, IMessageBroker messageBroker,
+        ILogger<TransferFundsHandler> logger)
     {
-        private readonly IWalletRepository _walletRepository;
-        private readonly IClock _clock;
-        private readonly IMessageBroker _messageBroker;
-        private readonly ILogger<TransferFundsHandler> _logger;
+        _walletRepository = walletRepository;
+        _clock = clock;
+        _messageBroker = messageBroker;
+        _logger = logger;
+    }
 
-        public TransferFundsHandler(IWalletRepository walletRepository, IClock clock, IMessageBroker messageBroker,
-            ILogger<TransferFundsHandler> logger)
+    public async Task HandleAsync(TransferFunds command, CancellationToken cancellationToken = default)
+    {
+        var (fromWalletId, toWalletId, amount) = command;
+        var fromWallet = await _walletRepository.GetAsync(fromWalletId);
+        if (fromWallet is null)
         {
-            _walletRepository = walletRepository;
-            _clock = clock;
-            _messageBroker = messageBroker;
-            _logger = logger;
+            throw new WalletNotFoundException(fromWalletId);
         }
 
-        public async Task HandleAsync(TransferFunds command, CancellationToken cancellationToken = default)
+        var toWallet = await _walletRepository.GetAsync(toWalletId);
+        if (toWallet is null)
         {
-            var (fromWalletId, toWalletId, amount) = command;
-            var fromWallet = await _walletRepository.GetAsync(fromWalletId);
-            if (fromWallet is null)
-            {
-                throw new WalletNotFoundException(fromWalletId);
-            }
-
-            var toWallet = await _walletRepository.GetAsync(toWalletId);
-            if (toWallet is null)
-            {
-                throw new WalletNotFoundException(toWalletId);
-            }
-
-            var now = _clock.CurrentDate();
-            var currency = fromWallet.Currency;
-            fromWallet.TransferFunds(toWallet, amount, now);
-            await _walletRepository.UpdateAsync(fromWallet);
-            await _walletRepository.UpdateAsync(toWallet);
-            await _messageBroker.PublishAsync(new FundsTransferred(fromWalletId, toWalletId, amount, currency),
-                cancellationToken);
-            _logger.LogInformation($"Transferred {amount} {currency} from: '{fromWallet.Id}' to: '{toWallet.Id}'.");
+            throw new WalletNotFoundException(toWalletId);
         }
+
+        var now = _clock.CurrentDate();
+        var currency = fromWallet.Currency;
+        fromWallet.TransferFunds(toWallet, amount, now);
+        await _walletRepository.UpdateAsync(fromWallet);
+        await _walletRepository.UpdateAsync(toWallet);
+        await _messageBroker.PublishAsync(new FundsTransferred(fromWalletId, toWalletId, amount, currency),
+            cancellationToken);
+        _logger.LogInformation($"Transferred {amount} {currency} from: '{fromWallet.Id}' to: '{toWallet.Id}'.");
     }
 }

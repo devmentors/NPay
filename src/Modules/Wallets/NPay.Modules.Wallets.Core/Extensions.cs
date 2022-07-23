@@ -4,15 +4,14 @@ using NPay.Modules.Wallets.Core.Wallets.Services;
 
 [assembly: InternalsVisibleTo("NPay.Modules.Wallets.Application")]
 [assembly: InternalsVisibleTo("NPay.Modules.Wallets.Infrastructure")]
-namespace NPay.Modules.Wallets.Core
+namespace NPay.Modules.Wallets.Core;
+
+public static class Extensions
 {
-    public static class Extensions
+    public static IServiceCollection AddCoreLayer(this IServiceCollection services)
     {
-        public static IServiceCollection AddCoreLayer(this IServiceCollection services)
-        {
-            services.AddSingleton<ICurrencyResolver, CurrencyResolver>();
+        services.AddSingleton<ICurrencyResolver, CurrencyResolver>();
             
-            return services;
-        }
+        return services;
     }
 }

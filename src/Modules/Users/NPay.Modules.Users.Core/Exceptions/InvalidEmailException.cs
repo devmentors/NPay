@@ -1,14 +1,13 @@
 ﻿using NPay.Shared.Exceptions;
 
-namespace NPay.Modules.Users.Core.Exceptions
-{
-    internal sealed class InvalidEmailException : NPayException
-    {
-        public string Email { get; }
+namespace NPay.Modules.Users.Core.Exceptions;
 
-        public InvalidEmailException(string email) : base($"Email: '{email}' is invalid.")
-        {
-            Email = email;
-        }
+internal sealed class InvalidEmailException : NPayException
+{
+    public string Email { get; }
+
+    public InvalidEmailException(string email) : base($"Email: '{email}' is invalid.")
+    {
+        Email = email;
     }
 }

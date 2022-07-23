@@ -1,11 +1,10 @@
-﻿namespace NPay.Shared.Queries
-{
-    //Marker
-    public interface IQuery
-    {
-    }
+﻿namespace NPay.Shared.Queries;
 
-    public interface IQuery<T> : IQuery
-    {
-    }
+//Marker
+public interface IQuery
+{
+}
+
+public interface IQuery<T> : IQuery
+{
 }

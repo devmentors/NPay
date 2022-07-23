@@ -4,15 +4,14 @@ using NPay.Modules.Wallets.Application.Services;
 using NPay.Modules.Wallets.Shared;
 
 [assembly: InternalsVisibleTo("NPay.Modules.Wallets.Infrastructure")]
-namespace NPay.Modules.Wallets.Application
+namespace NPay.Modules.Wallets.Application;
+
+public static class Extensions
 {
-    public static class Extensions
+    public static IServiceCollection AddApplicationLayer(this IServiceCollection services)
     {
-        public static IServiceCollection AddApplicationLayer(this IServiceCollection services)
-        {
-            services.AddTransient<IWalletsModuleApi, WalletsModuleApi>();
+        services.AddTransient<IWalletsModuleApi, WalletsModuleApi>();
             
-            return services;
-        }
+        return services;
     }
 }

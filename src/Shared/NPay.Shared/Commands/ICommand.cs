@@ -1,7 +1,6 @@
-﻿namespace NPay.Shared.Commands
+﻿namespace NPay.Shared.Commands;
+
+//Marker
+public interface ICommand
 {
-    //Marker
-    public interface ICommand
-    {
-    }
 }

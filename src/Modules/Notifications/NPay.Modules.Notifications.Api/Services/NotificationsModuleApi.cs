@@ -1,18 +1,17 @@
 using System.Threading.Tasks;
 using NPay.Modules.Notifications.Shared;
 
-namespace NPay.Modules.Notifications.Api.Services
+namespace NPay.Modules.Notifications.Api.Services;
+
+internal sealed class NotificationsModuleApi : INotificationsModuleApi
 {
-    internal sealed class NotificationsModuleApi : INotificationsModuleApi
+    private readonly IEmailSender _emailSender;
+
+    public NotificationsModuleApi(IEmailSender emailSender)
     {
-        private readonly IEmailSender _emailSender;
-
-        public NotificationsModuleApi(IEmailSender emailSender)
-        {
-            _emailSender = emailSender;
-        }
-
-        public Task SendEmailAsync(string receiver, string template)
-            => _emailSender.SendAsync(receiver, template);
+        _emailSender = emailSender;
     }
+
+    public Task SendEmailAsync(string receiver, string template)
+        => _emailSender.SendAsync(receiver, template);
 }

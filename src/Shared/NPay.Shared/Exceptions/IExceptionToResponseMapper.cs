@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace NPay.Shared.Exceptions
+namespace NPay.Shared.Exceptions;
+
+internal interface IExceptionToResponseMapper
 {
-    internal interface IExceptionToResponseMapper
-    {
-        ExceptionResponse Map(Exception exception);
-    }
+    ExceptionResponse Map(Exception exception);
 }

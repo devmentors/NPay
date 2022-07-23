@@ -2,20 +2,19 @@
 using Microsoft.Extensions.DependencyInjection;
 using NPay.Modules.Users.Core;
 
-namespace NPay.Modules.Users.Api
+namespace NPay.Modules.Users.Api;
+
+public static class Extensions
 {
-    public static class Extensions
+    public static IServiceCollection AddUsersModule(this IServiceCollection services)
     {
-        public static IServiceCollection AddUsersModule(this IServiceCollection services)
-        {
-            services.AddCoreLayer();
+        services.AddCoreLayer();
             
-            return services;
-        }
+        return services;
+    }
         
-        public static IApplicationBuilder UseUsersModule(this IApplicationBuilder app)
-        {
-            return app;
-        }
+    public static IApplicationBuilder UseUsersModule(this IApplicationBuilder app)
+    {
+        return app;
     }
 }

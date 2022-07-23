@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace NPay.Modules.Notifications.Shared
+namespace NPay.Modules.Notifications.Shared;
+
+public interface INotificationsModuleApi
 {
-    public interface INotificationsModuleApi
-    {
-        Task SendEmailAsync(string receiver, string template);
-    }
+    Task SendEmailAsync(string receiver, string template);
 }

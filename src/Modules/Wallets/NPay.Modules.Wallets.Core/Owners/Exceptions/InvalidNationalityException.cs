@@ -1,15 +1,14 @@
 ﻿using NPay.Shared.Exceptions;
 
-namespace NPay.Modules.Wallets.Core.Owners.Exceptions
-{
-    internal sealed class InvalidNationalityException : NPayException
-    {
-        public string Nationality { get; }
+namespace NPay.Modules.Wallets.Core.Owners.Exceptions;
 
-        public InvalidNationalityException(string nationality)
-            : base($"Nationality: '{nationality}' is invalid.")
-        {
-            Nationality = nationality;
-        }
+internal sealed class InvalidNationalityException : NPayException
+{
+    public string Nationality { get; }
+
+    public InvalidNationalityException(string nationality)
+        : base($"Nationality: '{nationality}' is invalid.")
+    {
+        Nationality = nationality;
     }
 }
